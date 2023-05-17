@@ -1,0 +1,46 @@
+/* navbar.css */
+
+.navbar {
+    background-color: rgb(16, 107, 192);
+    padding: 10px;
+  }
+  
+  .navbar div {
+    display: flex;
+    align-items: center;
+    
+   
+  }
+  
+  .navbar span {
+    font-size: 44px;
+    font-weight: bold;
+    color: #e7dfdf;
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+    padding: 0;
+    margin-top: 1rem;
+    
+  }
+  
+  .navbar li {
+    margin-left: 15px;
+    
+  }
+  
+  .navbar li span {
+    font-size: 18px;
+    color: #f6efef;
+   
+  }
+  
+  .navbar li span:hover {
+    color: #333;
+    cursor: pointer;
+  }
+  
