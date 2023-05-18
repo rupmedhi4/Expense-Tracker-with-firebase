@@ -1,3 +1,4 @@
+import Login from "./Components/Login/Login";
 import Navbar from "./Components/Navbar/Navbar";
 import Signup from "./Components/Signup/Signup";
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,6 +10,7 @@ function App() {
       <ToastContainer/>
         <Navbar />
         <Signup />
+        <Login/>
      
     </>
   );

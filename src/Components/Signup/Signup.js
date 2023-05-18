@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import './Signup.css';
-import { auth } from '../../firebase';
+import { auth,db } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Signup() {
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+
   const signupHandler = async (e) => {
     e.preventDefault();
+
+    
 
     if (password !== confirmPassword) {
       toast.error("Passwords don't match");
@@ -21,6 +23,7 @@ export default function Signup() {
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+      console.log(auth)
       toast.success('Account created successfully');
     } catch (err) {
       console.log(err.message);
@@ -32,17 +35,6 @@ export default function Signup() {
     <div className="card">
       <h1>Sign Up</h1>
       <form onSubmit={signupHandler}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-
         <div>
           <label htmlFor="email">Email</label>
           <input
