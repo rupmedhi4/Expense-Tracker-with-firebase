@@ -10,6 +10,7 @@ import Signup from './Components/Signup/Signup';
 import Navbar from './Components/Navbar/Navbar';
 import WelcomePage from './Components/Welcome-Page/WelcomePage';
 import PrivateRoutes from './Components/PrivateRoutes/PrivateRoutes';
+import UpdateForm from './Components/UpdateForm/UpdateForm';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -18,6 +19,7 @@ function App() {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        console.log(user)
       } else {
         setUser(null);
       }
@@ -34,6 +36,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/updateform" element={<UpdateForm/>} />
         <Route path="/welcome" element={<PrivateRoutes user={user} component={WelcomePage} alt={Login} />}/>
       </Routes>
     </Router>
