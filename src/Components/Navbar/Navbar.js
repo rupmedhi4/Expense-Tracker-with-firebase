@@ -15,6 +15,9 @@ export default function Navbar({user}) {
   const signupHandler = () => {
     navigate("/signup")
   }
+  const deshboard = () => {
+    navigate("/welcome")
+  }
 
   const logoutHandler = async ()=>{
     try{
@@ -29,7 +32,7 @@ export default function Navbar({user}) {
   return (
     <nav className="navbar">
       <div className='NavDiv'>
-        <span>Expense Tracker</span>
+        <span onClick={()=>{navigate("/")}}>Expense Tracker</span>
         <ul>
           <li>
             <span>Home</span>
@@ -40,6 +43,10 @@ export default function Navbar({user}) {
           <li>
             <span>About Us</span>
           </li>
+          {user ? <li>
+            <span onClick={deshboard}>User Deshboard</span>
+          </li> : null }
+         
         </ul>
       </div>
 
