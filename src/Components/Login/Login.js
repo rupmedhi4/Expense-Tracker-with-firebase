@@ -3,15 +3,19 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { toast } from 'react-toastify';
 import './Login.css';
+import { useNavigate } from 'react-router-dom';
+import WelcomePage from '../Welcome-Page/WelcomePage';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const loginHandler = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success('Account logged in successfully');
+      navigate('/welcome');
       console.log('Logged in');
     } catch (err) {
       toast.error(err.message);
