@@ -3,6 +3,7 @@ import './Signup.css';
 import { auth,db } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Signup() {
@@ -10,26 +11,31 @@ export default function Signup() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const navigate = useNavigate();
+
 
   const signupHandler = async (e) => {
     e.preventDefault();
-
-    
 
     if (password !== confirmPassword) {
       toast.error("Passwords don't match");
       return;
     }
-
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       console.log(auth)
       toast.success('Account created successfully');
+      navigate("/login")
+
     } catch (err) {
       console.log(err.message);
       toast.error(err.message);
     }
   };
+
+  const loginHandler = ()=>{
+     navigate("/login")
+  }
 
   return (
     <div className="card">
@@ -71,7 +77,7 @@ export default function Signup() {
         <button type="submit" className='btn-signup' >Sign Up</button>
       </form>
 
-      <div>
+      <div onClick={loginHandler}>
         <button className="btn">
           <span>Have an account? Login</span>
         </button>

@@ -1,17 +1,27 @@
-import React from 'react'
-import { useState } from 'react';
-import'./Login.css'
+import React, { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
+import { toast } from 'react-toastify';
+import './Login.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
 
+  const loginHandler = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      toast.success('Account logged in successfully');
+      console.log('Logged in');
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
 
   return (
     <div className="card">
       <h1>Log in</h1>
-      <form >
+      <form>
         <div>
           <label htmlFor="email">Email</label>
           <input
@@ -33,15 +43,14 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className='btn-signup' >Log in</button>
-        <span className='forgotBtn'>Forgot password</span>
-      </form>
 
-      <div>
-        <button className="btn">
-          <span>Have an account? Login</span>
-        </button>
-      </div>
+        <div>
+          <button type="button" className="btn-signup" onClick={loginHandler}>
+            Log in
+          </button>
+          <span className="forgotBtn">Forgot password</span>
+        </div>
+      </form>
     </div>
-  )
+  );
 }
